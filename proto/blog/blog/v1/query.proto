@@ -1,8 +1,10 @@
 syntax = "proto3";
+
 package blog.blog.v1;
 
 import "amino/amino.proto";
 import "blog/blog/v1/params.proto";
+import "blog/blog/v1/post.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
@@ -14,6 +16,11 @@ service Query {
   // Parameters queries the parameters of the module.
   rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/blog/blog/v1/params";
+  }
+
+  // ShowPost Queries a list of ShowPost items.
+  rpc ShowPost(QueryShowPostRequest) returns (QueryShowPostResponse) {
+    option (google.api.http).get = "/blog/blog/v1/show_post/{id}";
   }
 }
 
@@ -27,4 +34,14 @@ message QueryParamsResponse {
     (gogoproto.nullable) = false,
     (amino.dont_omitempty) = true
   ];
+}
+
+// QueryShowPostRequest defines the QueryShowPostRequest message.
+message QueryShowPostRequest {
+  uint64 id = 1;
+}
+
+// QueryShowPostResponse defines the QueryShowPostResponse message.
+message QueryShowPostResponse {
+  Post post = 1;
 }
