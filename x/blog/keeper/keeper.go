@@ -7,6 +7,7 @@ import (
 	"cosmossdk.io/core/address"
 	corestore "cosmossdk.io/core/store"
 	"github.com/cosmos/cosmos-sdk/codec"
+	storetypes "cosmossdk.io/store/types"
 
 	"blog/x/blog/types"
 )
@@ -15,6 +16,7 @@ type Keeper struct {
 	storeService corestore.KVStoreService
 	cdc          codec.Codec
 	addressCodec address.Codec
+	storeKey storetypes.StoreKey
 	// Address capable of executing a MsgUpdateParams message.
 	// Typically, this should be the x/gov module account.
 	authority []byte
