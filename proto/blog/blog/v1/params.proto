@@ -1,0 +1,13 @@
+syntax = "proto3";
+package blog.blog.v1;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "blog/x/blog/types";
+
+// Params defines the parameters for the module.
+message Params {
+  option (amino.name) = "blog/x/blog/Params";
+  option (gogoproto.equal) = true;
+}
