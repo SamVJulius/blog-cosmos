@@ -1,6 +1,8 @@
 package keeper
 
 import (
+	"context"
+
 	"blog/x/blog/types"
 )
 
@@ -14,4 +16,14 @@ func NewQueryServerImpl(k Keeper) types.QueryServer {
 
 type queryServer struct {
 	k Keeper
+}
+
+// ListPost implements [types.QueryServer].
+func (q queryServer) ListPost(ctx context.Context, req *types.QueryListPostRequest) (*types.QueryListPostResponse, error) {
+	return q.k.ListPost(ctx, req)
+}
+
+// ShowPost implements [types.QueryServer].
+func (q queryServer) ShowPost(ctx context.Context, req *types.QueryShowPostRequest) (*types.QueryShowPostResponse, error) {
+	return q.k.ShowPost(ctx, req)
 }
